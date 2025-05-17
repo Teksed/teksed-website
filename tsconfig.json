@@ -21,13 +21,14 @@
     "paths": {
       "@app/*": ["app/*"],
       "@env/*": ["environments/*"],
-      "@shared/*": ["app/shared/*"],
+      "@ui-kits/*": ["app/shared/ui-kits*"],
+      "@components/*": ["app/shared/components/*"],
       "@core/*": ["app/core/*"],
       "@interfaces/*": ["app/core/interfaces/*"],
-      "@components/*": ["app/components/*"],
       "@pages/*": ["app/pages/*"],
       "@utils/*": ["app/utils/*"],
-      "@store/*": ["app/store/*"]
+      "@store/*": ["app/store/*"],
+      "@routes/*": ["app/routes/*"]
     }
   },
   "angularCompilerOptions": {

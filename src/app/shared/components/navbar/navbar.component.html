@@ -1,0 +1,84 @@
+<nav
+  *ngIf="isVisible"
+  @slideInOut
+  [class.backdrop-blur-md]="true"
+  [class.bg-white]="hasScrolled"
+  [class.bg-primary]="!hasScrolled"
+  [class.text-white]="!hasScrolled"
+  [class.text-primary]="hasScrolled"
+  [class.shadow-lg]="hasScrolled"
+  [class.border-b]="hasScrolled"
+  [class.border-white]="hasScrolled"
+  class="fixed w-full top-0 left-0 z-50 transition-all duration-300"
+>
+  <div class="container mx-auto px-6 py-3">
+    <div class="flex justify-between items-center">
+      <img src="assets/tek.png" alt="TeKSED Inc. Logo" class="h-10" />
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-10">
+        <a
+          (click)="navigateTo('/')"
+          class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
+          [class.text-white]="!hasScrolled"
+          [class.text-primary]="hasScrolled"
+        >
+          Home
+        </a>
+        <a
+          (click)="navigateTo('/about')"
+          class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
+          [class.text-white]="!hasScrolled"
+          [class.text-primary]="hasScrolled"
+        >
+          About
+        </a>
+        <a
+          (click)="navigateTo('/solutions')"
+          class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
+          [class.text-white]="!hasScrolled"
+          [class.text-primary]="hasScrolled"
+        >
+          Solutions
+        </a>
+        <a
+          (click)="navigateTo('/contact')"
+          class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
+          [class.text-white]="!hasScrolled"
+          [class.text-primary]="hasScrolled"
+        >
+          Contact
+        </a>
+        <button
+          class="P500 font-semibold px-6 py-2 rounded-full transition-all"
+          [class.bg-secondary]="hasScrolled"
+          [class.bg-white]="!hasScrolled"
+          [class.text-white]="hasScrolled"
+          [class.text-primary]="!hasScrolled"
+          [class.hover:bg-tertiary]="hasScrolled"
+          [class.hover:bg-neutral]="!hasScrolled"
+        >
+          Get Started
+        </button>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          class="focus:outline-none"
+          [class.text-primary]="hasScrolled"
+          [class.text-white]="!hasScrolled"
+        >
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>

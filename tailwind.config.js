@@ -13,6 +13,10 @@ module.exports = {
         neutral: "#ffdce8",
       },
 
+      fontFamily: {
+        sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+
       fontSize: {
         H900: ["2.07375rem", { lineHeight: "2.5rem", fontWeight: "700" }],
         H800: ["1.72813rem", { lineHeight: "2rem", fontWeight: "700" }],

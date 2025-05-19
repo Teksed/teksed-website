@@ -1,0 +1,65 @@
+<!-- news.component.html -->
+<section class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h1 class="text-H900 text-primary mb-4">Latest News & Insights</h1>
+
+    <!-- Category Filter Chips -->
+    <div class="flex flex-wrap gap-3 mb-12">
+      <button
+        (click)="filterByCategory('all')"
+        [class.bg-secondary]="activeCategory() === 'all'"
+        [class.text-white]="activeCategory() === 'all'"
+        [class.bg-primary]="activeCategory() !== 'all'"
+        [class.text-primary]="activeCategory() !== 'all'"
+        class="px-4 py-2 rounded-full transition-colors"
+      >
+        All
+      </button>
+      @for (category of categories(); track category) {
+        <button
+          (click)="filterByCategory(category)"
+          [class.bg-secondary]="activeCategory() === category"
+          [class.bg-primary]="activeCategory() !== category"
+          class="px-4 py-2 rounded-full transition-colors text-white"
+        >
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <!-- Blog Cards -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      @for (article of filteredArticles(); track article.id) {
+        <article
+          class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+        >
+          <img [src]="article.image" [alt]="article.title" class="w-full h-48 object-cover" />
+          <div class="p-6">
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-P100 text-secondary">{{ article.date | date }}</span>
+              <span class="text-P100 bg-primary/10 text-primary px-2 py-1 rounded-full">
+                {{ article.category }}
+              </span>
+            </div>
+            <h3 class="text-H600 text-primary my-3">{{ article.title }}</h3>
+            <p class="text-P200 text-gray-600 mb-4">{{ article.excerpt }}</p>
+            <a
+              [routerLink]="['/news', article.slug]"
+              class="text-secondary hover:underline flex items-center"
+            >
+              Read More
+              <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

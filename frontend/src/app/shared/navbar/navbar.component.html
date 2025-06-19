@@ -1,0 +1,230 @@
+<!-- navbar.component.html -->
+@if (isVisible() && !isLoading()) {
+  <nav
+    aria-labelledby="Navigation Items"
+    @slideInOut
+    [class.backdrop-blur-md]="true"
+    [class.bg-white]="hasScrolled()"
+    [class.bg-primary]="!hasScrolled()"
+    [class.text-white]="!hasScrolled()"
+    [class.text-primary]="hasScrolled()"
+    [class.shadow-lg]="hasScrolled()"
+    [class.border-b]="hasScrolled()"
+    [class.border-white]="hasScrolled()"
+    class="fixed w-full top-0 left-0 z-50 transition-all duration-300"
+  >
+    <div class="container mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <!-- Dynamic Logo -->
+        <img
+          [src]="navbarData()?.logo?.asset?.url || 'assets/tek.png'"
+          [alt]="navbarData()?.logo?.alt || 'Company Logo'"
+          class="h-10 cursor-pointer"
+          (click)="navigateTo('/')"
+          onkeypress="navigateTo('/')"
+        />
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8">
+          <!-- Dynamic Navigation Items with Dropdown Support -->
+          <div *ngFor="let item of navbarData()?.navigationItems" class="relative">
+            <!-- Main Navigation Item -->
+            <a
+              *ngIf="!hasSubItems(item)"
+              (click)="navigateTo(item.route!)"
+              class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
+              [class.text-white]="!hasScrolled()"
+              [class.text-primary]="hasScrolled()"
+            >
+              {{ item.label }}
+            </a>
+
+            <!-- Dropdown Navigation Item -->
+            <div *ngIf="hasSubItems(item)" class="relative">
+              <button
+                (click)="toggleDropdown(item._key, $event)"
+                class="P500 font-medium cursor-pointer transition-colors hover:text-secondary flex items-center"
+                [class.text-white]="!hasScrolled()"
+                [class.text-primary]="hasScrolled()"
+              >
+                {{ item.label }}
+                <svg
+                  class="ml-1 h-4 w-4 transition-transform duration-200"
+                  [class.rotate-180]="activeDropdown() === item._key"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              <!-- Dropdown Menu -->
+              <div
+                *ngIf="activeDropdown() === item._key"
+                class="absolute top-full left-0 mt-2 w-56 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 z-50"
+                [@slideInOut]
+              >
+                <div class="py-1">
+                  <a
+                    *ngFor="let subItem of item.subItems"
+                    (click)="navigateToSubItem(subItem.route)"
+                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-secondary cursor-pointer transition-colors"
+                  >
+                    {{ subItem.label }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic CTA Button -->
+          <button
+            *ngIf="navbarData()?.ctaButton"
+            (click)="onCtaClick()"
+            class="P500 font-semibold px-6 py-2 rounded-full transition-all ml-4"
+            [class.bg-secondary]="hasScrolled()"
+            [class.bg-white]="!hasScrolled()"
+            [class.text-white]="hasScrolled()"
+            [class.text-primary]="!hasScrolled()"
+            [class.hover:bg-tertiary]="hasScrolled()"
+            [class.hover:bg-neutral]="!hasScrolled()"
+          >
+            {{ navbarData()?.ctaButton?.label }}
+          </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button
+            (click)="toggleMobileMenu()"
+            class="focus:outline-none"
+            [class.text-primary]="hasScrolled()"
+            [class.text-white]="!hasScrolled()"
+          >
+            <svg
+              class="h-8 w-8 transition-transform duration-200"
+              [class.rotate-90]="isMenuOpen()"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              @if (isMenuOpen()) {
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              } @else {
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              }
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div *ngIf="isMenuOpen()" class="md:hidden mt-4 pb-4 border-t border-gray-200" [@slideInOut]>
+        <div class="pt-4 space-y-2">
+          <div *ngFor="let item of navbarData()?.navigationItems">
+            <!-- Mobile Menu Item without subItems -->
+            <a
+              *ngIf="!hasSubItems(item)"
+              (click)="navigateTo(item.route!); toggleMobileMenu()"
+              class="block px-3 py-2 text-base font-medium cursor-pointer transition-colors hover:text-secondary"
+              [class.text-white]="!hasScrolled()"
+              [class.text-primary]="hasScrolled()"
+            >
+              {{ item.label }}
+            </a>
+
+            <!-- Mobile Menu Item with subItems -->
+            <div *ngIf="hasSubItems(item)">
+              <button
+                (click)="toggleDropdown(item._key, $event)"
+                class="w-full flex justify-between items-center px-3 py-2 text-base font-medium transition-colors hover:text-secondary"
+                [class.text-white]="!hasScrolled"
+                [class.text-primary]="hasScrolled()"
+              >
+                {{ item.label }}
+                <svg
+                  class="h-4 w-4 transition-transform duration-200"
+                  [class.rotate-180]="activeDropdown() === item._key"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              <!-- Mobile Submenu -->
+              <div
+                *ngIf="activeDropdown() === item._key"
+                class="pl-6 space-y-1 bg-gray-50 rounded-md mt-1"
+              >
+                <a
+                  *ngFor="let subItem of item.subItems"
+                  (click)="navigateToSubItem(subItem.route); toggleMobileMenu()"
+                  class="block px-3 py-2 text-sm text-gray-600 hover:text-secondary cursor-pointer transition-colors"
+                >
+                  {{ subItem.label }}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Mobile CTA Button -->
+          <button
+            *ngIf="navbarData()?.ctaButton"
+            (click)="onCtaClick(); toggleMobileMenu()"
+            class="w-full mt-4 P500 font-semibold px-6 py-2 rounded-full transition-all"
+            [class.bg-secondary]="hasScrolled()"
+            [class.bg-white]="!hasScrolled()"
+            [class.text-white]="hasScrolled()"
+            [class.text-primary]="!hasScrolled()"
+          >
+            {{ navbarData()?.ctaButton?.label }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+}
+
+<!-- Loading state -->
+@if (isVisible() && isLoading()) {
+  <nav aria-label="Loading navigation">
+    <div class="container mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <div class="h-10 w-32 bg-gray-300 animate-pulse rounded"></div>
+        <div class="hidden md:flex items-center space-x-8">
+          <div class="h-4 w-16 bg-gray-300 animate-pulse rounded"></div>
+          <div class="h-4 w-16 bg-gray-300 animate-pulse rounded"></div>
+          <div class="h-4 w-16 bg-gray-300 animate-pulse rounded"></div>
+          <div class="h-4 w-16 bg-gray-300 animate-pulse rounded"></div>
+          <div class="h-10 w-24 bg-gray-300 animate-pulse rounded-full"></div>
+        </div>
+        <div class="md:hidden">
+          <div class="h-8 w-8 bg-gray-300 animate-pulse rounded"></div>
+        </div>
+      </div>
+    </div>
+  </nav>
+}

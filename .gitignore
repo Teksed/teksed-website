@@ -43,7 +43,7 @@ Thumbs.db
 
 
 # environment files
-src/environments/*.ts
+frontend/src/environments/*.ts
 
 # Ignore some directories in both projects
 /frontend/node_modules
@@ -51,3 +51,5 @@ src/environments/*.ts
 /frontend/.angular
 /sanity/node_modules
 /sanity/.sanity
+/sanity/.gitignore
+/sanity/README.md

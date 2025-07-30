@@ -23,4 +23,31 @@ export const routes: Routes = [
     loadComponent: () => import("../pages/blog/blog.component").then((c) => c.BlogComponent),
     title: `Blog`,
   },
+
+  {
+    path: "clients",
+    loadComponent: () =>
+      import("../pages/clients/clients.component").then((c) => c.ClientsComponent),
+    title: `Clients`,
+  },
+
+  {
+    path: "products",
+    loadComponent: () =>
+      import("../pages/products/products.component").then((c) => c.ProductsComponent),
+    title: `Products`,
+  },
+
+  {
+    path: "services",
+    loadComponent: () =>
+      import("../pages/services/services.component").then((c) => c.ServicesComponent),
+    title: `Services`,
+  },
+
+  {
+    path: "",
+    redirectTo: "home",
+    pathMatch: "full",
+  },
 ];

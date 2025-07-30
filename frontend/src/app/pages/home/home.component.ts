@@ -1,6 +1,4 @@
-import { Component, effect, OnDestroy, OnInit, signal } from "@angular/core";
-
-import { Executive } from "@app/core/interfaces/executive.interface";
+import { Component } from "@angular/core";
 
 @Component({
   selector: "teksed-home",

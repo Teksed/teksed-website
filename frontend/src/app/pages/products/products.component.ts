@@ -1,11 +1,11 @@
-import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Product } from "@app/core/interfaces/products.interface";
 
 @Component({
   selector: "teksed-products",
-  imports: [CommonModule],
+  imports: [],
   templateUrl: "./products.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent {
   products: Product[] = [
@@ -43,7 +43,7 @@ export class ProductsComponent {
         details: "Starting from $500 per election with unlimited voters",
       },
       status: "live",
-      demoUrl: "https://demo.teksed-evoting.com",
+      demoUrl: "",
     },
     {
       name: "SMS Portal",
@@ -79,7 +79,7 @@ export class ProductsComponent {
         details: "Starting from $0.05 per SMS with volume discounts",
       },
       status: "live",
-      demoUrl: "https://sms.teksed.com",
+      demoUrl: "",
     },
   ];
 

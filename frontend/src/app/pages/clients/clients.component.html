@@ -1,0 +1,201 @@
+<!-- Clients Page -->
+<div class="min-h-screen bg-gray-50">
+  <!-- Header Section -->
+  <section class="bg-gradient-to-br from-primary to-secondary py-20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-H900 text-white mb-6">
+          Our <span class="text-tertiary">Trusted</span> Partners
+        </h1>
+        <p class="text-P300 text-neutral max-w-2xl mx-auto">
+          We're proud to work with forward-thinking institutions across Ghana, helping them
+          transform their operations through innovative technology solutions.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          @for (stat of stats; track $index) {
+            <div class="p-4">
+              <div class="text-H800 text-secondary mb-2">{{ stat.number }}</div>
+              <div class="text-P200 text-gray-600">{{ stat.label }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries We Serve -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-H800 text-primary text-center mb-16">Industries We Serve</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          @for (industry of industries; track $index) {
+            <div class="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+              <div class="flex items-center mb-4">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mr-4"
+                >
+                  <svg
+                    class="w-6 h-6 text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      [attr.d]="industry.icon"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-H600 text-primary">{{ industry.name }}</h3>
+                  <p class="text-P100 text-gray-600">{{ industry.count }} Active Clients</p>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Showcase -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-H800 text-primary text-center mb-16">Client Success Stories</h2>
+
+        <div class="space-y-12">
+          @for (client of clients; track $index; let i = $index) {
+            <div
+              class="bg-gray-50 rounded-2xl overflow-hidden"
+              [class.lg:flex-row-reverse]="i % 2 === 1"
+            >
+              <div class="lg:flex lg:items-center">
+                <!-- Content -->
+                <div class="lg:w-2/3 p-8 lg:p-12">
+                  <div class="flex items-center mb-4">
+                    <span
+                      class="bg-secondary/10 text-secondary px-3 py-1 rounded-full text-P100 font-medium"
+                    >
+                      {{ client.industry }}
+                    </span>
+                  </div>
+
+                  <h3 class="text-H700 text-primary mb-4">{{ client.name }}</h3>
+                  <p class="text-P200 text-gray-600 mb-6">{{ client.description }}</p>
+
+                  <!-- Services -->
+                  <div class="mb-8">
+                    <h4 class="text-H500 text-primary mb-3">Services Provided</h4>
+                    <div class="flex flex-wrap gap-2">
+                      @for (service of client.services; track $index) {
+                        <span
+                          class="bg-white border border-primary/20 text-primary px-3 py-1 rounded-full text-P100"
+                        >
+                          {{ service }}
+                        </span>
+                      }
+                    </div>
+                  </div>
+
+                  <!-- Testimonial -->
+                  @if (client.testimonial) {
+                    <div class="bg-white p-6 rounded-xl border-l-4 border-secondary">
+                      <p class="text-P200 text-gray-700 italic mb-4">"{{ client.testimonial }}"</p>
+                      <div class="flex items-center">
+                        <div
+                          class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center mr-3"
+                        >
+                          <svg
+                            class="w-5 h-5 text-secondary"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p class="text-P250 text-primary">{{ client.testimonialAuthor }}</p>
+                          <p class="text-P100 text-gray-600">{{ client.testimonialRole }}</p>
+                        </div>
+                      </div>
+                    </div>
+                  }
+                </div>
+
+                <!-- Visual/Logo Area -->
+                <div
+                  class="lg:w-1/3 bg-gradient-to-br from-primary/5 to-secondary/5 p-8 lg:p-12 flex items-center justify-center min-h-[300px]"
+                >
+                  <div class="text-center">
+                    <div
+                      class="w-24 h-24 bg-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg"
+                    >
+                      <svg
+                        class="w-12 h-12 text-secondary"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                        ></path>
+                      </svg>
+                    </div>
+                    <p class="text-H500 text-primary">{{ client.name }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership CTA -->
+  <section class="py-20 bg-gradient-to-r from-primary to-secondary">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-H800 text-white mb-6">
+        Ready to Join Our <span class="text-tertiary">Success Stories?</span>
+      </h2>
+      <p class="text-P300 text-neutral max-w-2xl mx-auto mb-10">
+        Let's discuss how TeKSED can transform your institution with innovative technology solutions
+        tailored to your specific needs.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button
+          class="bg-white hover:bg-neutral text-primary font-semibold px-8 py-4 rounded-full transition-colors"
+        >
+          Start Your Project
+        </button>
+        <button
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-4 rounded-full transition-colors"
+        >
+          View Case Studies
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Client } from "@app/core/interfaces/clients.interface";
 
 @Component({
   selector: "teksed-clients",
   imports: [],
   templateUrl: "./clients.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientsComponent {
   protected clients: Client[] = [

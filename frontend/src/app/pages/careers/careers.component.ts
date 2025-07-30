@@ -1,5 +1,5 @@
 import { HttpClient } from "@angular/common/http";
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 interface AshbyJob {
   id: string;
   title: string;
@@ -15,6 +15,7 @@ interface AshbyJob {
   selector: "teksed-careers",
   imports: [],
   templateUrl: "./careers.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CareersComponent {
   jobs: AshbyJob[] = [];

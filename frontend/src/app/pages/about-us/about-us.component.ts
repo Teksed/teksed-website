@@ -1,4 +1,4 @@
-import { Component, effect, signal } from "@angular/core";
+import { ChangeDetectionStrategy, Component, effect, signal } from "@angular/core";
 import { Executive } from "@app/core/interfaces/executive.interface";
 import { trigger, transition, style, animate } from "@angular/animations";
 
@@ -7,6 +7,7 @@ import { trigger, transition, style, animate } from "@angular/animations";
   imports: [],
   templateUrl: "./about-us.component.html",
   styleUrl: "./about-us.component.css",
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger("slideAnimation", [
       transition(":increment", [

@@ -1,10 +1,11 @@
-import { Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component } from "@angular/core";
 import { Service } from "@app/core/interfaces/service.interface";
 
 @Component({
   selector: "teksed-services",
   imports: [],
   templateUrl: "./services.component.html",
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesComponent {
   protected services: Service[] = [

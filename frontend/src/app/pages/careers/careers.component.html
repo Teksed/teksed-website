@@ -102,7 +102,9 @@
   <section class="py-20 bg-gray-50">
     <div class="container mx-auto px-6">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-H800 text-primary text-center mb-16">Open Positions</h2>
+        @if (!loading && !error && jobs.length !== 0) {
+          <h2 class="text-H800 text-primary text-center mb-16">Open Positions</h2>
+        }
 
         <!-- Loading State -->
         @if (loading) {
@@ -122,7 +124,7 @@
         }
 
         <!-- Jobs List -->
-        @if (!loading && !error) {
+        @if (jobs.length > 0 && !loading) {
           <div class="space-y-6">
             @for (job of jobs; track $index) {
               <div

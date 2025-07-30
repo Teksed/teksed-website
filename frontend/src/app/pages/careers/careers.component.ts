@@ -22,6 +22,8 @@ export class CareersComponent {
   loading = true;
   error = false;
 
+  constructor(private readonly http: HttpClient) {}
+
   //TODO: Mock data for demonstration (replace with actual Ashby API integration)
   mockJobs: AshbyJob[] = [
     // {
@@ -88,21 +90,18 @@ export class CareersComponent {
     // },
   ];
 
-  constructor(private readonly http: HttpClient) {}
-
   ngOnInit() {
     this.loadJobs();
   }
 
   loadJobs() {
-    // In a real implementation, you would call the Ashby API here
+    // In a real implementation,
     // Example: this.http.get<AshbyJob[]>('https://api.ashbyhq.com/jobs').subscribe(...)
 
     // For now, using mock data
-    setTimeout(() => {
-      this.jobs = this.mockJobs;
-      this.loading = false;
-    }, 1000);
+
+    this.jobs = this.mockJobs;
+    this.loading = false;
   }
 
   applyForJob(jobId: string) {

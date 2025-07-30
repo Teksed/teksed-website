@@ -87,7 +87,7 @@
           <button
             *ngIf="navbarData()?.ctaButton"
             (click)="onCtaClick()"
-            class="P500 font-semibold px-6 py-2 rounded-full transition-all ml-4"
+            class="hidden P500 font-semibold px-6 py-2 rounded-full transition-all ml-4"
             [class.bg-secondary]="hasScrolled()"
             [class.bg-white]="!hasScrolled()"
             [class.text-white]="hasScrolled()"

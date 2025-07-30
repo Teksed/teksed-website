@@ -66,7 +66,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (data) => {
-          console.log("Navbar data loaded:", data);
           this.navbarData.set(data);
           if (data === null) {
             this.setFallbackData();

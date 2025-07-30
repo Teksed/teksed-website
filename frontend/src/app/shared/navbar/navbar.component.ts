@@ -19,7 +19,7 @@ import { NavbarFallBackData } from "@app/data/fallback-data";
   selector: "teksed-navbar",
   imports: [CommonModule],
   templateUrl: "./navbar.component.html",
-  styleUrl: "./navbar.component.css",
+
   animations: [
     trigger("slideInOut", [
       transition(":enter", [

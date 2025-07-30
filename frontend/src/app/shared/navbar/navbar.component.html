@@ -154,7 +154,7 @@
               <button
                 (click)="toggleDropdown(item._key, $event)"
                 class="w-full flex justify-between items-center px-3 py-2 text-base font-medium transition-colors hover:text-secondary"
-                [class.text-white]="!hasScrolled"
+                [class.text-white]="!hasScrolled()"
                 [class.text-primary]="hasScrolled()"
               >
                 {{ item.label }}

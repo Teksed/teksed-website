@@ -1,0 +1,253 @@
+<!-- Services Page -->
+<div class="min-h-screen bg-gray-50">
+  <!-- Header Section -->
+  <section class="bg-gradient-to-br from-primary to-secondary py-20">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-H900 text-white mb-6">
+          Our <span class="text-tertiary">Technology</span> Services
+        </h1>
+        <p class="text-P300 text-neutral max-w-2xl mx-auto">
+          Comprehensive technology solutions designed to transform your business operations and
+          drive sustainable growth across Africa.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          @for (service of services; track $index; let i = $index) {
+            <div class="bg-gray-50 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+              <!-- Service Header -->
+              <div class="flex items-center mb-6">
+                <div
+                  class="w-16 h-16 bg-secondary/10 rounded-xl flex items-center justify-center mr-4"
+                >
+                  <svg
+                    class="w-8 h-8 text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      [attr.d]="service.icon"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-H700 text-primary">{{ service.title }}</h3>
+              </div>
+
+              <!-- Service Description -->
+              <p class="text-P200 text-gray-600 mb-6">{{ service.description }}</p>
+
+              <!-- Features -->
+              <div class="mb-6">
+                <h4 class="text-H500 text-primary mb-3">Key Features</h4>
+                <ul class="space-y-2">
+                  @for (feature of service.features; track $index) {
+                    <li class="flex items-start">
+                      <svg
+                        class="w-4 h-4 text-secondary mr-2 mt-0.5 flex-shrink-0"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M5 13l4 4L19 7"
+                        ></path>
+                      </svg>
+                      <span class="text-P100 text-gray-600">{{ feature }}</span>
+                    </li>
+                  }
+                </ul>
+              </div>
+
+              <!-- Technologies -->
+              <div class="mb-6">
+                <h4 class="text-H500 text-primary mb-3">Technologies</h4>
+                <div class="flex flex-wrap gap-2">
+                  @for (tech of service.technologies; track $index) {
+                    <span
+                      class="bg-white border border-primary/20 text-primary px-3 py-1 rounded-full text-P100"
+                    >
+                      {{ tech }}
+                    </span>
+                  }
+                </div>
+              </div>
+
+              <!-- Benefits -->
+              <div class="mb-6">
+                <h4 class="text-H500 text-primary mb-3">Benefits</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  @for (benefit of service.benefits; track $index) {
+                    <div class="flex items-center">
+                      <div class="w-2 h-2 bg-secondary rounded-full mr-2"></div>
+                      <span class="text-P100 text-gray-600">{{ benefit }}</span>
+                    </div>
+                  }
+                </div>
+              </div>
+
+              <!-- CTA Button -->
+              <button
+                class="w-full bg-secondary hover:bg-tertiary text-white font-semibold py-3 rounded-full transition-colors"
+              >
+                Learn More
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-H800 text-primary text-center mb-16">Our Development Process</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          @for (step of processSteps; track $index; let i = $index) {
+            <div class="text-center">
+              <div class="relative mb-6">
+                <div
+                  class="w-16 h-16 bg-secondary rounded-full flex items-center justify-center mx-auto mb-4"
+                >
+                  <span class="text-H600 text-white">{{ step.step }}</span>
+                </div>
+                <!-- Connector Line -->
+                @if (i < processSteps.length - 1) {
+                  <div
+                    class="hidden lg:block absolute top-8 left-1/2 w-full h-0.5 bg-secondary/30 transform translate-x-8"
+                  ></div>
+                }
+              </div>
+              <h3 class="text-H600 text-primary mb-3">{{ step.title }}</h3>
+              <p class="text-P200 text-gray-600">{{ step.description }}</p>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-H800 text-primary text-center mb-16">Why Choose TeKSED?</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-H600 text-primary mb-3">Proven Expertise</h3>
+            <p class="text-P200 text-gray-600">
+              Years of experience delivering successful projects across various industries.
+            </p>
+          </div>
+
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-H600 text-primary mb-3">Cutting-Edge Technology</h3>
+            <p class="text-P200 text-gray-600">
+              We use the latest technologies and best practices to deliver modern solutions.
+            </p>
+          </div>
+
+          <div class="text-center p-6">
+            <div
+              class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"
+                ></path>
+              </svg>
+            </div>
+            <h3 class="text-H600 text-primary mb-3">24/7 Support</h3>
+            <p class="text-P200 text-gray-600">
+              Comprehensive support and maintenance to ensure your systems run smoothly.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-primary to-secondary">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-H800 text-white mb-6">
+        Ready to Transform Your <span class="text-tertiary">Business?</span>
+      </h2>
+      <p class="text-P300 text-neutral max-w-2xl mx-auto mb-10">
+        Let's discuss your project requirements and create a custom solution that drives your
+        business forward.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <button
+          class="bg-white hover:bg-neutral text-primary font-semibold px-8 py-4 rounded-full transition-colors"
+        >
+          Get Free Consultation
+        </button>
+        <button
+          class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-4 rounded-full transition-colors"
+        >
+          View Our Work
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

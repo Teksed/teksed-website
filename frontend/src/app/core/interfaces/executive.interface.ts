@@ -7,7 +7,11 @@ export interface Executive {
     linkedin?: string;
     twitter?: string;
     email?: string;
-    instagram?: string;
-    github?: string;
   };
+}
+
+export interface Stat {
+  number: string;
+  label: string;
+  icon: string;
 }

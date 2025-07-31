@@ -1,197 +1,737 @@
 <div class="relative overflow-hidden min-h-screen">
-  <!-- Hero Section -->
-  <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 bg-gradient-to-br from-primary to-black">
+  <!-- Hero Section with Enhanced Visuals -->
+  <section
+    class="relative pt-24 pb-20 md:pt-32 md:pb-32 min-h-screen flex items-center overflow-hidden"
+  >
+    <!-- Background Image with Overlay -->
+    <div class="absolute inset-0">
+      <img
+        src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop"
+        alt="Modern office space"
+        class="w-full h-full object-cover"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-primary/95 via-secondary/90 to-black/95"
+      ></div>
+    </div>
+
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0">
+      <div
+        class="absolute top-20 left-10 w-32 h-32 bg-tertiary/10 rounded-full blur-xl animate-pulse"
+      ></div>
+      <div
+        class="absolute bottom-20 right-10 w-48 h-48 bg-neutral/10 rounded-full blur-2xl animate-pulse delay-1000"
+      ></div>
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-secondary/5 rounded-full blur-3xl animate-pulse delay-500"
+      ></div>
+    </div>
+
     <!-- Glass morphism overlay -->
-    <div class="absolute inset-0 bg-white/5 backdrop-blur-sm z-0"></div>
+    <div class="absolute inset-0 bg-white/5 backdrop-blur-sm"></div>
 
     <div class="container mx-auto px-6 relative z-10">
-      <div class="max-w-4xl mx-auto text-center">
-        <!-- Logo/Brand -->
-        <div class="flex justify-center items-center mb-8">
-          <img src="assets/tek.png" alt="TeKSED Inc. Logo" />
-        </div>
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Hero Content -->
+          <div [@slideInLeft]>
+            <!-- Logo/Brand -->
+            <div class="flex items-center mb-8">
+              <img src="assets/tek.png" alt="TeKSED Inc. Logo" class="h-16 drop-shadow-lg" />
+            </div>
 
-        <!-- Main Heading -->
-        <h1 class="text-H900 font-bold text-white mb-6">
-          <span class="text-secondary">African Innovation</span> Is Here
-        </h1>
+            <!-- Main Heading -->
+            <h1 class="text-H900 font-bold text-white mb-6 leading-tight">
+              <span class="text-tertiary">African Innovation</span><br />
+              Meets Global Excellence
+            </h1>
 
-        <!-- Subheading -->
-        <p class="text-P300 text-neutral max-w-2xl mx-auto mb-10">
-          Empowering Ghanaian institutions with cutting-edge digital solutions that position Africa
-          at the forefront of global technology innovation.
-        </p>
+            <!-- Subheading -->
+            <p class="text-P300 text-neutral mb-10 leading-relaxed">
+              Empowering African institutions with cutting-edge digital solutions that drive growth,
+              efficiency, and position Africa at the forefront of global technology innovation.
+            </p>
 
-        <!-- Key Features/Services -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 max-w-3xl mx-auto">
-          <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
-            <svg
-              class="w-8 h-8 text-secondary mx-auto mb-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-              ></path>
-            </svg>
-            <h3 class="text-H500 text-white mb-2">Software Development</h3>
-            <p class="text-H200 text-neutral">Custom solutions built for your needs</p>
+            <!-- Key Stats -->
+            <div class="grid grid-cols-3 gap-6 mb-10">
+              <div class="text-center">
+                <div class="text-H700 text-tertiary font-bold">5+</div>
+                <div class="text-P100 text-neutral">Projects</div>
+              </div>
+              <div class="text-center">
+                <div class="text-H700 text-tertiary font-bold">98%</div>
+                <div class="text-P100 text-neutral">Satisfaction</div>
+              </div>
+              <div class="text-center">
+                <div class="text-H700 text-tertiary font-bold">24/7</div>
+                <div class="text-P100 text-neutral">Support</div>
+              </div>
+            </div>
+
+            <!-- Call to Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+              <a
+                href="services"
+                class="bg-tertiary hover:bg-secondary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+              >
+                Explore Our Solutions
+              </a>
+              <a
+                href="about-us"
+                class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+              >
+                Learn More
+              </a>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="flex items-center gap-4 text-neutral text-sm">
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                ISO Certified
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-5 h-5 text-tertiary" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                100% African Owned
+              </div>
+            </div>
           </div>
-          <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
-            <svg
-              class="w-8 h-8 text-secondary mx-auto mb-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              ></path>
-            </svg>
-            <h3 class="text-H500 text-white mb-2">Digital Transformation</h3>
-            <p class="text-H200 text-neutral">Modernize your operations</p>
-          </div>
-          <div class="bg-white bg-opacity-10 rounded-lg p-6 backdrop-blur-sm">
-            <svg
-              class="w-8 h-8 text-secondary mx-auto mb-3"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-              ></path>
-            </svg>
-            <h3 class="text-H500 text-white mb-2">AI Solutions</h3>
-            <p class="text-H200 text-neutral">Intelligent systems for the future</p>
+
+          <!-- Hero Visual -->
+          <div class="relative" [@slideInRight]>
+            <div class="relative">
+              <!-- Main Image -->
+              <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
+                <img
+                  src="https://images.pexels.com/photos/3184639/pexels-photo-3184639.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                  alt="Team collaboration"
+                  class="w-full h-80 object-cover rounded-xl shadow-2xl"
+                />
+              </div>
+
+              <!-- Floating Cards -->
+              <div class="absolute -top-6 -left-6 bg-white rounded-xl p-4 shadow-xl">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-gray-900">Project Delivered</div>
+                    <div class="text-xs text-gray-600">On time & budget</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="absolute -bottom-6 -right-6 bg-white rounded-xl p-4 shadow-xl">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <div class="text-sm font-semibold text-gray-900">24/7 Support</div>
+                    <div class="text-xs text-gray-600">Always here for you</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
-        <!-- Call to Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <button
-            class="bg-secondary hover:bg-tertiary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-          >
-            Explore Our Solutions
-          </button>
-          <button
-            class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
-          >
-            Contact Us Today
-          </button>
-        </div>
-
-        <!-- Newsletter Signup -->
       </div>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- Services Section -->
   <section class="py-20 bg-white">
     <div class="container mx-auto px-6">
-      <div class="max-w-4xl mx-auto text-center mb-16">
-        <div class="text-H800 text-primary mb-6 flex items-center text-center justify-center">
-          <div>
-            <p>About</p>
-          </div>
-          <img src="assets/tek.png" alt="TeKSED Inc. Logo" class="h-10 m-0" />
-        </div>
-        <img src="assets/tek.png" alt="TeKSED Inc. Logo" class="h-10" />
-        <p class="text-P300 text-gray-600 mb-8 flex">
-          Is a visionary technology solutions company founded in Ghana, with a bold mission to
-          empower institutions, communities, and industries through cutting-edge digital innovation.
-        </p>
-        <p class="text-P200 text-gray-600">
-          As a global startup, we specialize in software development, systems integration, digital
-          transformation, and AI-driven solutions. Our dedicated team is committed to building
-          resilient technologies that challenge the status quo and position Africa at the forefront
-          of the global tech revolution.
-        </p>
-      </div>
-
-      <!-- Mission/Vision -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-        <div class="bg-primary/5 p-8 rounded-xl border border-primary/10">
-          <div class="flex items-center mb-4">
-            <svg
-              class="w-8 h-8 text-secondary mr-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M13 10V3L4 14h7v7l9-11h-7z"
-              ></path>
-            </svg>
-            <h3 class="text-H600 text-primary">Our Mission</h3>
-          </div>
-          <p class="text-P200 text-gray-600">
-            To empower African institutions through innovative technology solutions that drive
-            efficiency, growth, and global competitiveness.
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" [@fadeInUp]>
+          <h2 class="text-H800 text-primary mb-4">
+            Our <span class="text-secondary">Solutions</span>
+          </h2>
+          <p class="text-P300 text-gray-600 max-w-2xl mx-auto">
+            Comprehensive technology services designed to transform your business and drive
+            sustainable growth in the digital age.
           </p>
         </div>
 
-        <div class="bg-primary/5 p-8 rounded-xl border border-primary/10">
-          <div class="flex items-center mb-4">
-            <svg
-              class="w-8 h-8 text-secondary mr-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+        <!-- Services Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" [@staggerAnimation]>
+          <div
+            *ngFor="let service of services"
+            class="group bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+          >
+            <!-- Service Icon -->
+            <div class="relative mb-6">
+              <div
+                [class]="
+                  'w-16 h-16 bg-gradient-to-br ' +
+                  service.color +
+                  ' rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300'
+                "
+              >
+                <svg
+                  class="w-8 h-8 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    [attr.d]="service.icon"
+                  ></path>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Service Content -->
+            <h3
+              class="text-H600 text-primary mb-4 group-hover:text-secondary transition-colors duration-300"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-              ></path>
-            </svg>
-            <h3 class="text-H600 text-primary">Our Vision</h3>
+              {{ service.title }}
+            </h3>
+            <p class="text-P200 text-gray-600 mb-6">
+              {{ service.description }}
+            </p>
+
+            <!-- Service Features -->
+            <ul class="space-y-2 mb-6">
+              <li
+                *ngFor="let feature of service.features"
+                class="flex items-center text-sm text-gray-600"
+              >
+                <svg
+                  class="w-4 h-4 text-green-500 mr-2 flex-shrink-0"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                {{ feature }}
+              </li>
+            </ul>
+
+            <!-- Learn More Button -->
+            <button
+              class="text-secondary hover:text-primary font-semibold text-sm transition-colors duration-200 flex items-center gap-2 group/btn"
+            >
+              Learn More
+              <svg
+                class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-200"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
+              </svg>
+            </button>
           </div>
-          <p class="text-P200 text-gray-600">
-            To be Africa's leading technology innovator, recognized globally for transformative
-            digital solutions that elevate communities and industries.
-          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="py-20 bg-gradient-to-r from-primary to-secondary">
-    <div class="container mx-auto px-6 text-center">
-      <h2 class="text-H800 text-white mb-6">
-        Ready to Transform Your Business with <span class="text-tertiary">TeKSED?</span>
-      </h2>
-      <p class="text-P300 text-neutral max-w-2xl mx-auto mb-10">
-        Let's discuss how our innovative technology solutions can drive your organization's growth
-        and position you at the forefront of digital transformation.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <button
-          class="bg-white hover:bg-neutral text-primary font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
-        >
-          Start Your Project
-        </button>
-        <button
-          class="bg-transparent border-2 border-white hover:bg-white hover:text-primary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
-        >
-          Schedule Consultation
-        </button>
+  <!-- Stats Section -->
+  <section class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" [@fadeInUp]>
+          <h2 class="text-H800 text-primary mb-4">
+            Our <span class="text-secondary">Impact</span>
+          </h2>
+          <p class="text-P300 text-gray-600">
+            Numbers that tell our story of excellence and innovation
+          </p>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8" [@staggerAnimation]>
+          <div
+            *ngFor="let stat of stats"
+            class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+          >
+            <div
+              class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg
+                class="w-8 h-8 text-secondary"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  [attr.d]="stat.icon"
+                ></path>
+              </svg>
+            </div>
+            <div class="text-H700 text-primary font-bold mb-2">{{ stat.number }}</div>
+            <div class="text-H500 text-secondary font-semibold mb-3">{{ stat.label }}</div>
+            <div class="text-P100 text-gray-600">{{ stat.description }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section Enhanced -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- About Content -->
+          <div [@slideInLeft]>
+            <div class="text-H800 text-primary mb-6 flex items-center">
+              <span class="mr-4">About</span>
+              <img src="assets/tek.png" alt="TeKSED Inc. Logo" class="h-10" />
+            </div>
+
+            <h3 class="text-H600 text-secondary mb-6">Pioneering Africa's Tech Revolution</h3>
+
+            <p class="text-P300 text-gray-600 mb-6">
+              TeKSED Inc. is a visionary technology solutions company founded in Ghana, with a bold
+              mission to empower institutions, communities, and industries through cutting-edge
+              digital innovation.
+            </p>
+
+            <p class="text-P200 text-gray-600 mb-8">
+              As a global startup, we specialize in software development, systems integration,
+              digital transformation, and AI-driven solutions. Our dedicated team is committed to
+              building resilient technologies that challenge the status quo and position Africa at
+              the forefront of the global tech revolution.
+            </p>
+
+            <!-- Mission/Vision Cards -->
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-H500 text-primary mb-2">Our Mission</h4>
+                  <p class="text-P200 text-gray-600">
+                    To empower African institutions through innovative technology solutions that
+                    drive efficiency, growth, and global competitiveness.
+                  </p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div
+                  class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <svg
+                    class="w-6 h-6 text-secondary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-H500 text-primary mb-2">Our Vision</h4>
+                  <p class="text-P200 text-gray-600">
+                    To be Africa's leading technology innovator, recognized globally for
+                    transformative digital solutions that elevate communities and industries.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- About Visual -->
+          <div class="relative" [@slideInRight]>
+            <div class="relative">
+              <img
+                src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop"
+                alt="Modern technology workspace"
+                class="w-full h-96 object-cover rounded-2xl shadow-2xl"
+              />
+
+              <!-- Overlay Stats -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent rounded-2xl flex items-end"
+              >
+                <div class="p-8 text-white w-full">
+                  <div class="grid grid-cols-2 gap-6">
+                    <div class="text-center">
+                      <div class="text-H600 font-bold">2024</div>
+                      <div class="text-P100">Founded</div>
+                    </div>
+                    <div class="text-center">
+                      <div class="text-H600 font-bold">5+</div>
+                      <div class="text-P100">Team Members</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Achievement Badge -->
+            <div class="absolute -top-6 -right-6 bg-white rounded-xl p-4 shadow-xl">
+              <div class="text-center">
+                <div
+                  class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2"
+                >
+                  <svg class="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      fill-rule="evenodd"
+                      d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    ></path>
+                  </svg>
+                </div>
+                <div class="text-sm font-semibold text-gray-900">African Owned</div>
+                <div class="text-xs text-gray-600">100% Local</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section
+    class="py-20 bg-gray-50"
+    (mouseenter)="stopTestimonialAutoPlay()"
+    (mouseleave)="startTestimonialAutoPlay()"
+  >
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto">
+        <!-- Section Header -->
+        <div class="text-center mb-16" [@fadeInUp]>
+          <h2 class="text-H800 text-primary mb-4">
+            What Our <span class="text-secondary">Clients Say</span>
+          </h2>
+          <p class="text-P300 text-gray-600">
+            Real stories from organizations we've helped transform
+          </p>
+        </div>
+
+        <!-- Testimonial Carousel -->
+        <div class="relative">
+          <div class="bg-white rounded-3xl p-8 md:p-12 shadow-xl" [@scaleIn]>
+            <div *ngIf="testimonials[currentTestimonial()]" class="text-center">
+              <!-- Quote -->
+              <div class="mb-8">
+                <svg
+                  class="w-12 h-12 text-secondary/20 mx-auto mb-6"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"
+                  />
+                </svg>
+                <p class="text-P300 text-gray-700 italic leading-relaxed">
+                  "{{ testimonials[currentTestimonial()].content }}"
+                </p>
+              </div>
+
+              <!-- Rating -->
+              <div class="flex justify-center mb-6">
+                <div class="flex gap-1">
+                  <svg
+                    *ngFor="let star of getStars(testimonials[currentTestimonial()].rating)"
+                    class="w-5 h-5 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Author -->
+              <div class="flex items-center justify-center gap-4">
+                <img
+                  [src]="testimonials[currentTestimonial()].image"
+                  [alt]="testimonials[currentTestimonial()].name"
+                  class="w-16 h-16 rounded-full object-cover"
+                />
+                <div class="text-left">
+                  <div class="text-H500 text-primary font-semibold">
+                    {{ testimonials[currentTestimonial()].name }}
+                  </div>
+                  <div class="text-P200 text-secondary">
+                    {{ testimonials[currentTestimonial()].position }}
+                  </div>
+                  <div class="text-P100 text-gray-600">
+                    {{ testimonials[currentTestimonial()].company }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Navigation Dots -->
+          <div class="flex justify-center mt-8 gap-2">
+            <button
+              *ngFor="let testimonial of testimonials; let i = index"
+              (click)="goToTestimonial(i)"
+              class="w-3 h-3 rounded-full transition-all duration-300"
+              [class.bg-secondary]="i === currentTestimonial()"
+              [class.bg-gray-300]="i !== currentTestimonial()"
+              [class.scale-125]="i === currentTestimonial()"
+            ></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-20 bg-gradient-to-r from-secondary to-primary">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto text-center" [@fadeInUp]>
+        <h2 class="text-H800 text-white mb-6">
+          Stay Updated with <span class="text-tertiary">TeKSED</span>
+        </h2>
+        <p class="text-P300 text-neutral mb-8">
+          Get the latest insights on technology trends, innovation stories from Africa, and
+          exclusive updates about our projects and achievements.
+        </p>
+
+        <!-- Newsletter Form -->
+        <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-8 mb-8">
+          <form
+            class="flex flex-col md:flex-row gap-4 max-w-2xl mx-auto"
+            (ngSubmit)="onNewsletterSubmit(newsletterForm)"
+            #newsletterForm="ngForm"
+          >
+            <input
+              type="email"
+              name="email"
+              required
+              ngModel
+              placeholder="Enter your email address"
+              class="flex-1 px-6 py-4 rounded-xl border border-white/20 bg-white/20 text-white placeholder-white/70 focus:outline-none focus:ring-2 focus:ring-tertiary focus:border-transparent"
+            />
+
+            <button
+              [disabled]="newsletterForm.invalid"
+              type="submit"
+              class="bg-tertiary hover:bg-white hover:text-primary text-white font-semibold px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              Subscribe Now
+            </button>
+          </form>
+
+          <p class="text-neutral/80 text-sm mt-4">
+            Join 500+ professionals already subscribed. No spam, unsubscribe anytime.
+          </p>
+        </div>
+
+        <!-- Benefits -->
+        <div class="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+          <div class="flex items-center gap-3 text-neutral">
+            <svg
+              class="w-6 h-6 text-tertiary flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span>Weekly Tech Insights</span>
+          </div>
+          <div class="flex items-center gap-3 text-neutral">
+            <svg
+              class="w-6 h-6 text-tertiary flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span>Project Updates</span>
+          </div>
+          <div class="flex items-center gap-3 text-neutral">
+            <svg
+              class="w-6 h-6 text-tertiary flex-shrink-0"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+            <span>Exclusive Content</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Section -->
+  <section class="relative py-20 overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img
+        src="https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop"
+        alt="Business meeting"
+        class="w-full h-full object-cover"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary/95 to-secondary/95"></div>
+    </div>
+
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="max-w-4xl mx-auto text-center" [@fadeInUp]>
+        <h2 class="text-H800 text-white mb-6">
+          Ready to Transform Your Business with <span class="text-tertiary">TeKSED?</span>
+        </h2>
+        <p class="text-P300 text-neutral mb-10">
+          Let's discuss how our innovative technology solutions can drive your organization's growth
+          and position you at the forefront of digital transformation.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          <a
+            href="services"
+            class="bg-tertiary hover:bg-secondary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
+          >
+            Explore Our Solutions
+          </a>
+          <a
+            href="about-us"
+            class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
+          >
+            Learn More
+          </a>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.986.836l.74 4.435a1 1 0 01-.502 1.21l-2.257 1.13a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V19a2 2 0 01-2 2h-2C9.716 21 3 14.284 3 6V5z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Call Us</h4>
+            <p class="text-neutral">+233 24 123 4567</p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Email Us</h4>
+            <p class="text-neutral">infoteksedinc.com</p>
+          </div>
+
+          <div class="text-center">
+            <div
+              class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4"
+            >
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                ></path>
+              </svg>
+            </div>
+            <h4 class="text-white font-semibold mb-2">Visit Us</h4>
+            <p class="text-neutral">Kumasi, Ghana</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 </div>
+
+<teksed-notification
+  [notification]="notification"
+  [autoClose]="true"
+  [autoCloseDelay]="4000"
+  (closed)="handleNotificationClosed()"
+></teksed-notification>

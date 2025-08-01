@@ -6,6 +6,8 @@ import {
   NotificationComponent,
   NotificationData,
 } from "@app/shared/notification/notification.component";
+import { NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs";
 
 interface Service {
   title: string;
@@ -78,7 +80,81 @@ interface Stat {
   ],
 })
 export class HomeComponent {
-  notification: NotificationData | null = null;
+  protected notification: NotificationData | null = null;
+  protected currentTestimonial = signal(0);
+  private testimonialInterval?: number;
+
+  constructor(private readonly router: Router) {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+
+    effect(() => {
+      this.startTestimonialAutoPlay();
+    });
+  }
+
+  ngOnInit() {
+    this.startTestimonialAutoPlay();
+  }
+
+  ngOnDestroy() {
+    this.stopTestimonialAutoPlay();
+  }
+
+  protected navigateToProducts() {
+    this.router.navigate(["services"]);
+  }
+
+  protected navigateToAboutUs() {
+    this.router.navigate(["about-us"]);
+  }
+
+  startTestimonialAutoPlay() {
+    this.testimonialInterval = window.setInterval(() => {
+      this.nextTestimonial();
+    }, 5000);
+  }
+
+  stopTestimonialAutoPlay() {
+    if (this.testimonialInterval) {
+      clearInterval(this.testimonialInterval);
+    }
+  }
+
+  nextTestimonial() {
+    this.currentTestimonial.update((current) =>
+      current >= this.testimonials.length - 1 ? 0 : current + 1,
+    );
+  }
+
+  goToTestimonial(index: number) {
+    this.currentTestimonial.set(index);
+  }
+
+  getStars(rating: number): number[] {
+    return Array(rating).fill(0);
+  }
+
+  async onNewsletterSubmit(form: NgForm) {
+    const email = form.value.email;
+
+    // Simulate loading delay
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    // Show success notification
+    this.notification = {
+      success: true,
+      message: `Thanks for subscribing, ${email}! 🎉`,
+    };
+
+    // Reset form
+    form.reset();
+  }
+
+  handleNotificationClosed() {
+    this.notification = null;
+  }
 
   services: Service[] = [
     {
@@ -205,67 +281,4 @@ export class HomeComponent {
       description: "Combined decades of expertise in cutting-edge technology",
     },
   ];
-
-  currentTestimonial = signal(0);
-  private testimonialInterval?: number;
-
-  constructor() {
-    effect(() => {
-      this.startTestimonialAutoPlay();
-    });
-  }
-
-  ngOnInit() {
-    this.startTestimonialAutoPlay();
-  }
-
-  ngOnDestroy() {
-    this.stopTestimonialAutoPlay();
-  }
-
-  startTestimonialAutoPlay() {
-    this.testimonialInterval = window.setInterval(() => {
-      this.nextTestimonial();
-    }, 5000);
-  }
-
-  stopTestimonialAutoPlay() {
-    if (this.testimonialInterval) {
-      clearInterval(this.testimonialInterval);
-    }
-  }
-
-  nextTestimonial() {
-    this.currentTestimonial.update((current) =>
-      current >= this.testimonials.length - 1 ? 0 : current + 1,
-    );
-  }
-
-  goToTestimonial(index: number) {
-    this.currentTestimonial.set(index);
-  }
-
-  getStars(rating: number): number[] {
-    return Array(rating).fill(0);
-  }
-
-  async onNewsletterSubmit(form: NgForm) {
-    const email = form.value.email;
-
-    // Simulate loading delay
-    // await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    // Show success notification
-    this.notification = {
-      success: true,
-      message: `Thanks for subscribing, ${email}! 🎉`,
-    };
-
-    // Reset form
-    form.reset();
-  }
-
-  handleNotificationClosed() {
-    this.notification = null;
-  }
 }

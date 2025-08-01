@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { Router } from "@angular/router";
 import { Product } from "@app/core/interfaces/products.interface";
 
 @Component({
@@ -8,6 +9,7 @@ import { Product } from "@app/core/interfaces/products.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent {
+  private readonly router = inject(Router);
   products: Product[] = [
     {
       name: "E-Voting System",
@@ -121,5 +123,13 @@ export class ProductsComponent {
   contactSales(productName: string) {
     // Handle contact sales action
     console.log(`Sales contact requested for ${productName}`);
+  }
+
+  navigateToSolutions() {
+    this.router.navigate(["services"]);
+  }
+
+  navigateToAboutUs() {
+    this.router.navigate(["about-us"]);
   }
 }

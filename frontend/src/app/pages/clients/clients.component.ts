@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
 import { Client } from "@app/core/interfaces/clients.interface";
+import { filter } from "rxjs";
 
 @Component({
   selector: "teksed-clients",
@@ -8,6 +10,18 @@ import { Client } from "@app/core/interfaces/clients.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ClientsComponent {
+  constructor(private readonly router: Router) {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+  protected navigateToProducts() {
+    this.router.navigate(["products"]);
+  }
+
+  protected navigateToAboutUs() {
+    this.router.navigate(["about-us"]);
+  }
   protected clients: Client[] = [
     {
       name: "Kokofu Nursing Training College",

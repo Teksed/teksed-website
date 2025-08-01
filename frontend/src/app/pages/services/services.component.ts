@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { NavigationEnd, Router } from "@angular/router";
 import { Service } from "@app/core/interfaces/service.interface";
+import { filter } from "rxjs";
 
 @Component({
   selector: "teksed-services",
@@ -8,6 +10,20 @@ import { Service } from "@app/core/interfaces/service.interface";
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ServicesComponent {
+  constructor(private readonly router: Router) {
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      window.scrollTo(0, 0);
+    });
+  }
+
+  protected navigateToProducts() {
+    this.router.navigate(["products"]);
+  }
+
+  protected navigateToAboutUs() {
+    this.router.navigate(["about-us"]);
+  }
+
   protected services: Service[] = [
     {
       title: "Software Development",

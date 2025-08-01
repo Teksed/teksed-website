@@ -71,18 +71,18 @@
 
             <!-- Call to Action Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 mb-8">
-              <a
-                href="services"
+              <button
+                (click)="navigateToProducts()"
                 class="bg-tertiary hover:bg-secondary text-white font-semibold px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg"
               >
                 Explore Our Solutions
-              </a>
-              <a
-                href="about-us"
+              </button>
+              <button
+                (click)="navigateToAboutUs()"
                 class="bg-transparent border-2 border-white hover:bg-white/10 text-white font-semibold px-8 py-4 rounded-full transition-all duration-300"
               >
                 Learn More
-              </a>
+              </button>
             </div>
 
             <!-- Trust Indicators -->

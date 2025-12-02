@@ -47,6 +47,7 @@ frontend/src/environments/*.ts
 
 # Ignore some directories in both projects
 /frontend/node_modules
+/frontend/dist
 /frontend/.vscode
 /frontend/.angular
 /sanity/node_modules

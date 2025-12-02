@@ -31,12 +31,25 @@ jobs:
         working-directory: ./frontend
         run: npm ci
 
-      # 4. Build Angular app
+      # 4. Create environment file from secrets
+      - name: Create environment file
+        working-directory: ./frontend/src/environments
+        run: |
+          cat > environment.prod.ts << EOF
+          export const environment = {
+            production: true,
+            PROJECT_ID: '${{ secrets.SANITY_PROJECT_ID }}',
+            DATASET: '${{ secrets.SANITY_DATASET }}'
+          };
+          EOF
+          echo "✅ Environment file created successfully"
+
+      # 5. Build Angular app
       - name: Build Angular app
         working-directory: ./frontend
         run: npm run build -- --configuration production
 
-      # 5. Verify build output exists
+      # 6. Verify build output exists
       - name: Verify build
         run: |
           if [ ! -d "./frontend/dist/teksed-website/browser" ]; then
@@ -46,7 +59,7 @@ jobs:
           echo "Build successful! Files:"
           ls -la ./frontend/dist/teksed-website/browser/
 
-      # 6. Deploy to Hostinger via FTP
+      # 7. Deploy to Hostinger via FTP
       - name: Deploy to Hostinger
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Updated to latest
         with:
@@ -62,7 +75,7 @@ jobs:
             **/node_modules/**
             **/.DS_Store
 
-      # 7. Deployment notification (optional)
+      # 8. Deployment notification (optional)
       - name: Deployment Success
         if: success()
         run: |

@@ -79,7 +79,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/dist/teksed-website/browser/
           server-dir: /domains/teksedinc.com/public_html/
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false
           log-level: verbose
           exclude: |
             **/.git*

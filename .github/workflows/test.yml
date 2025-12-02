@@ -45,9 +45,9 @@ jobs:
 
       # Create environment file from secrets
       - name: Create environment file
-        working-directory: ./frontend/src/environments
         run: |
-          cat > environment.prod.ts << EOF
+          mkdir -p ./frontend/src/environments
+          cat > ./frontend/src/environments/environment.prod.ts << EOF
           export const environment = {
             production: true,
             PROJECT_ID: '${{ secrets.SANITY_PROJECT_ID }}',
@@ -55,6 +55,7 @@ jobs:
           };
           EOF
           echo "✅ Environment file created"
+        # working-directory: ./frontend/src/environments
 
       # Run linting (optional - uncomment if you have ESLint configured)
       # - name: Run linting

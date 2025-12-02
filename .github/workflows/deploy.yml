@@ -80,6 +80,7 @@ jobs:
           local-dir: ./frontend/dist/teksed-website/browser/
           server-dir: /public_html/
           dangerous-clean-slate: true
+          log-level: verbose
           exclude: |
             **/.git*
             **/.git*/**

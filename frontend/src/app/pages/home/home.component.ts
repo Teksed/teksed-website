@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, signal } from "@angular/core";
+import { Component, effect, signal } from "@angular/core";
 import { trigger, transition, style, animate, query, stagger } from "@angular/animations";
 import { CommonModule } from "@angular/common";
 import { FormsModule, NgForm } from "@angular/forms";
@@ -37,7 +37,6 @@ interface Stat {
   selector: "teksed-home",
   imports: [CommonModule, FormsModule, NotificationComponent],
   templateUrl: "./home.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger("fadeInUp", [
       transition(":enter", [

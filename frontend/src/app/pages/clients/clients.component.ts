@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { animate, style, transition, trigger } from "@angular/animations";
+import { Component } from "@angular/core";
 import { NavigationEnd, Router } from "@angular/router";
 import { Client } from "@app/core/interfaces/clients.interface";
 import { filter } from "rxjs";
@@ -7,7 +8,14 @@ import { filter } from "rxjs";
   selector: "teksed-clients",
   imports: [],
   templateUrl: "./clients.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger("fadeInUp", [
+      transition(":enter", [
+        style({ opacity: 0, transform: "translateY(30px)" }),
+        animate("600ms ease-out", style({ opacity: 1, transform: "translateY(0)" })),
+      ]),
+    ]),
+  ],
 })
 export class ClientsComponent {
   constructor(private readonly router: Router) {

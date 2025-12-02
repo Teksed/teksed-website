@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, signal } from "@angular/core";
+import { Component, effect, signal } from "@angular/core";
 import { Executive, Stat } from "@app/core/interfaces/executive.interface";
 import { trigger, transition, style, animate, query, stagger } from "@angular/animations";
 import { CommonModule } from "@angular/common";
@@ -9,7 +9,6 @@ import { filter } from "rxjs";
   selector: "teksed-about-us",
   imports: [CommonModule],
   templateUrl: "./about-us.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger("fadeInUp", [
       transition(":enter", [

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { Router } from "@angular/router";
 import { Product } from "@app/core/interfaces/products.interface";
 
@@ -6,7 +6,6 @@ import { Product } from "@app/core/interfaces/products.interface";
   selector: "teksed-products",
   imports: [],
   templateUrl: "./products.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent {
   private readonly router = inject(Router);

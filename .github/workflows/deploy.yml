@@ -1,0 +1,76 @@
+name: Deploy Angular to Hostinger
+
+on:
+  push:
+    branches:
+      - master # Only deploys from master branch
+    paths:
+      - "frontend/**" # Only trigger if frontend files change
+      - ".github/workflows/deploy.yml" # Or if workflow changes
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4 # Updated to v4 (latest)
+
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4 # Updated to v4 (latest)
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      # 3. Install dependencies
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      # 4. Build Angular app
+      - name: Build Angular app
+        working-directory: ./frontend
+        run: npm run build -- --configuration production
+
+      # 5. Verify build output exists
+      - name: Verify build
+        run: |
+          if [ ! -d "./frontend/dist/teksed-website/browser" ]; then
+            echo "Build directory not found!"
+            exit 1
+          fi
+          echo "Build successful! Files:"
+          ls -la ./frontend/dist/teksed-website/browser/
+
+      # 6. Deploy to Hostinger via FTP
+      - name: Deploy to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5 # Updated to latest
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./frontend/dist/teksed-website/browser/
+          server-dir: ./public_html/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.DS_Store
+
+      # 7. Deployment notification (optional)
+      - name: Deployment Success
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🚀 Your site is live at your domain"
+
+      - name: Deployment Failed
+        if: failure()
+        run: |
+          echo "❌ Deployment failed. Check the logs above."
+          exit 1

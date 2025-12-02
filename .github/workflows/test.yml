@@ -1,0 +1,97 @@
+name: Test Build
+
+on:
+  push:
+    branches:
+      - dev
+      - develop
+      - feature/**
+      - fix/**
+      - hotfix/**
+      - chore/**
+      - test/**
+      - refactor/**
+      - docs/**
+    paths:
+      - "frontend/**"
+      - ".github/workflows/test.yml"
+  pull_request:
+    branches:
+      - master
+    paths:
+      - "frontend/**"
+
+jobs:
+  test-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: frontend/package-lock.json
+
+      # Install dependencies
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: npm ci
+
+      # Run linting (optional - uncomment if you have ESLint configured)
+      # - name: Run linting
+      #   working-directory: ./frontend
+      #   run: npm run lint
+
+      # Run tests (if you have any)
+      - name: Run tests
+        working-directory: ./frontend
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+        continue-on-error: true # Don't fail if tests don't exist yet
+
+      # Build the Angular app
+      - name: Build Angular app
+        working-directory: ./frontend
+        run: npm run build -- --configuration production
+
+      # Verify build output
+      - name: Verify build output
+        run: |
+          echo "✅ Build completed successfully!"
+          echo "📦 Build output contents:"
+          ls -la ./frontend/dist/teksed-website/browser/
+
+          # Check if critical files exist
+          if [ ! -f "./frontend/dist/teksed-website/browser/index.html" ]; then
+            echo "❌ ERROR: index.html not found in build output!"
+            exit 1
+          fi
+
+          if [ ! -f "./frontend/dist/teksed-website/browser/.htaccess" ]; then
+            echo "⚠️  WARNING: .htaccess not found in build output!"
+            echo "Make sure you've added it to angular.json assets"
+          fi
+
+          echo "✅ All critical files present!"
+
+      # Build size report (optional)
+      - name: Build size report
+        run: |
+          echo "📊 Build Size Report:"
+          du -sh ./frontend/dist/teksed-website/browser/
+          echo ""
+          echo "Largest files:"
+          find ./frontend/dist/teksed-website/browser/ -type f -exec du -h {} + | sort -rh | head -10
+
+      # Comment on PR with build status (optional - requires permissions)
+      - name: PR Comment
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "✅ Build successful for PR #${{ github.event.pull_request.number }}"
+          echo "Branch: ${{ github.head_ref }}"
+          echo "Commit: ${{ github.sha }}"

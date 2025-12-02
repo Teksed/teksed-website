@@ -61,12 +61,14 @@ jobs:
       # 6. Verify build output exists
       - name: Verify build
         run: |
-          if [ ! -d "./frontend/dist/teksed-website/browser" ]; then
-            echo "Build directory not found!"
-            exit 1
-          fi
-          echo "Build successful! Files:"
+          echo "Build directory contents:"
           ls -la ./frontend/dist/teksed-website/browser/
+          echo "---"
+          echo "Checking index.html content:"
+          head -20 ./frontend/dist/teksed-website/browser/index.html
+          echo "---"
+          echo "Checking main JS file:"
+          ls -lh ./frontend/dist/teksed-website/browser/main-*.js
 
       # 7. Deploy to Hostinger via FTP
       - name: Deploy to Hostinger
@@ -77,7 +79,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./frontend/dist/teksed-website/browser/
           server-dir: /public_html/
-          dangerous-clean-slate: false
+          dangerous-clean-slate: true
           exclude: |
             **/.git*
             **/.git*/**

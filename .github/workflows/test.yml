@@ -44,9 +44,18 @@ jobs:
         run: npm ci
 
       # Create environment file from secrets
-      - name: Create environment file
+      - name: Create environment files
         run: |
           mkdir -p ./frontend/src/environments
+          # Create base environment file
+          cat > ./frontend/src/environments/environment.ts << EOF
+          export const environment = {
+            production: false,
+            PROJECT_ID: '${{ secrets.SANITY_PROJECT_ID }}',
+            DATASET: '${{ secrets.SANITY_DATASET }}'
+          };
+          EOF
+          # Create production environment file
           cat > ./frontend/src/environments/environment.prod.ts << EOF
           export const environment = {
             production: true,
@@ -54,8 +63,7 @@ jobs:
             DATASET: '${{ secrets.SANITY_DATASET }}'
           };
           EOF
-          echo "✅ Environment file created"
-        # working-directory: ./frontend/src/environments
+          echo "✅ Environment files created successfully"
 
       # Run linting (optional - uncomment if you have ESLint configured)
       # - name: Run linting

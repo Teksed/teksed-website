@@ -1,5 +1,6 @@
+import { animate, style, transition, trigger } from "@angular/animations";
 import { HttpClient } from "@angular/common/http";
-import { ChangeDetectionStrategy, Component } from "@angular/core";
+import { Component } from "@angular/core";
 interface AshbyJob {
   id: string;
   title: string;
@@ -15,7 +16,14 @@ interface AshbyJob {
   selector: "teksed-careers",
   imports: [],
   templateUrl: "./careers.component.html",
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger("fadeInUp", [
+      transition(":enter", [
+        style({ opacity: 0, transform: "translateY(30px)" }),
+        animate("600ms ease-out", style({ opacity: 1, transform: "translateY(0)" })),
+      ]),
+    ]),
+  ],
 })
 export class CareersComponent {
   jobs: AshbyJob[] = [];

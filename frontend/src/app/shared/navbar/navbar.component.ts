@@ -1,13 +1,5 @@
 import { CommonModule } from "@angular/common";
-import {
-  Component,
-  HostListener,
-  OnInit,
-  OnDestroy,
-  signal,
-  ChangeDetectionStrategy,
-  inject,
-} from "@angular/core";
+import { Component, HostListener, OnInit, OnDestroy, signal, inject } from "@angular/core";
 import { trigger, transition, style, animate } from "@angular/animations";
 import { Router } from "@angular/router";
 import { Subject, takeUntil } from "rxjs";
@@ -29,7 +21,6 @@ import { NavbarFallBackData } from "@app/data/fallback-data";
       transition(":leave", [animate("300ms ease-in", style({ transform: "translateY(-100%)" }))]),
     ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent implements OnInit, OnDestroy {
   protected isVisible = signal(true);

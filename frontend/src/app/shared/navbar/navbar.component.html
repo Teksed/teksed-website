@@ -4,14 +4,10 @@
     aria-labelledby="Navigation Items"
     @slideInOut
     [class.backdrop-blur-md]="true"
-    [class.bg-white]="hasScrolled()"
-    [class.bg-primary]="!hasScrolled()"
-    [class.text-white]="!hasScrolled()"
-    [class.text-primary]="hasScrolled()"
     [class.shadow-lg]="hasScrolled()"
     [class.border-b]="hasScrolled()"
     [class.border-white]="hasScrolled()"
-    class="fixed w-full top-0 left-0 z-50 transition-all duration-300"
+    class="fixed w-full top-0 left-0 z-50 transition-all duration-300 bg-white text-primary"
   >
     <div class="container mx-auto px-6 py-3">
       <div class="flex justify-between items-center">
@@ -33,8 +29,6 @@
               *ngIf="!hasSubItems(item)"
               (click)="navigateTo(item.route!)"
               class="P500 font-medium cursor-pointer transition-colors hover:text-secondary"
-              [class.text-white]="!hasScrolled()"
-              [class.text-primary]="hasScrolled()"
             >
               {{ item.label }}
             </a>
@@ -142,9 +136,7 @@
             <a
               *ngIf="!hasSubItems(item)"
               (click)="navigateTo(item.route!); toggleMobileMenu()"
-              class="block px-3 py-2 text-base font-medium cursor-pointer transition-colors hover:text-secondary"
-              [class.text-white]="!hasScrolled()"
-              [class.text-primary]="hasScrolled()"
+              class="block px-3 py-2 text-base font-medium cursor-pointer transition-colors text-primary hover:text-secondary"
             >
               {{ item.label }}
             </a>
@@ -153,9 +145,7 @@
             <div *ngIf="hasSubItems(item)">
               <button
                 (click)="toggleDropdown(item._key, $event)"
-                class="w-full flex justify-between items-center px-3 py-2 text-base font-medium transition-colors hover:text-secondary"
-                [class.text-white]="!hasScrolled()"
-                [class.text-primary]="hasScrolled()"
+                class="w-full flex justify-between items-center px-3 py-2 text-base font-medium transition-colors text-primary hover:text-secondary"
               >
                 {{ item.label }}
                 <svg
@@ -194,11 +184,7 @@
           <button
             *ngIf="navbarData()?.ctaButton"
             (click)="onCtaClick(); toggleMobileMenu()"
-            class="w-full mt-4 P500 font-semibold px-6 py-2 rounded-full transition-all"
-            [class.bg-secondary]="hasScrolled()"
-            [class.bg-white]="!hasScrolled()"
-            [class.text-white]="hasScrolled()"
-            [class.text-primary]="!hasScrolled()"
+            class="w-full mt-4 P500 font-semibold px-6 py-2 rounded-full transition-all bg-secondary text-white"
           >
             {{ navbarData()?.ctaButton?.label }}
           </button>

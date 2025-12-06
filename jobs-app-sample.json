@@ -1,0 +1,46 @@
+[
+  {
+    "id": "1",
+    "title": "Senior Software Engineer",
+    "department": "Engineering",
+    "location": "Nairobi, Kenya",
+    "employmentType": "Full-time",
+    "description": "We are looking for an experienced software engineer to join our growing team and help build innovative solutions for African businesses.",
+    "requirements": [
+      "5+ years of software development experience",
+      "Strong proficiency in Angular, React, or Vue.js",
+      "Experience with Node.js and Python",
+      "Knowledge of cloud platforms (AWS, Azure, or GCP)",
+      "Excellent problem-solving and communication skills"
+    ],
+    "benefits": [
+      "Competitive salary package",
+      "Comprehensive health insurance",
+      "Professional development budget",
+      "Flexible working hours",
+      "Remote work options"
+    ]
+  },
+  {
+    "id": "2",
+    "title": "Product Designer",
+    "department": "Design",
+    "location": "Remote",
+    "employmentType": "Full-time",
+    "description": "Join our design team to create beautiful and intuitive user experiences that delight our customers across Africa.",
+    "requirements": [
+      "3+ years of product design experience",
+      "Proficiency in Figma and Adobe Creative Suite",
+      "Strong portfolio showcasing UI/UX work",
+      "Understanding of design systems and accessibility",
+      "Experience with user research and testing"
+    ],
+    "benefits": [
+      "100% remote work",
+      "Health insurance coverage",
+      "Latest design tools and equipment",
+      "Creative freedom and autonomy",
+      "International team collaboration"
+    ]
+  }
+]

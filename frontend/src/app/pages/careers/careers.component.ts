@@ -1,7 +1,9 @@
 import { animate, style, transition, trigger } from "@angular/animations";
+import { CommonModule } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { Component } from "@angular/core";
-interface AshbyJob {
+import { FormsModule } from "@angular/forms";
+interface Job {
   id: string;
   title: string;
   department: string;
@@ -14,7 +16,7 @@ interface AshbyJob {
 
 @Component({
   selector: "teksed-careers",
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: "./careers.component.html",
   animations: [
     trigger("fadeInUp", [
@@ -26,94 +28,137 @@ interface AshbyJob {
   ],
 })
 export class CareersComponent {
-  jobs: AshbyJob[] = [];
+  jobs: Job[] = [];
   loading = true;
   error = false;
 
-  constructor(private readonly http: HttpClient) {}
+  // Application modal state
+  showApplicationModal = false;
+  selectedJob: Job | null = null;
 
-  //TODO: Mock data for demonstration (replace with actual Ashby API integration)
-  mockJobs: AshbyJob[] = [
-    // {
-    //   id: "1",
-    //   title: "Senior Software Developer",
-    //   department: "Engineering",
-    //   location: "Accra, Ghana",
-    //   employmentType: "Full-time",
-    //   description:
-    //     "Join our engineering team to build cutting-edge solutions that empower African institutions.",
-    //   requirements: [
-    //     "5+ years of software development experience",
-    //     "Proficiency in Angular, Node.js, and cloud technologies",
-    //     "Experience with agile development methodologies",
-    //     "Strong problem-solving and communication skills",
-    //   ],
-    //   benefits: [
-    //     "Competitive salary and equity package",
-    //     "Health insurance coverage",
-    //     "Professional development opportunities",
-    //     "Flexible working arrangements",
-    //   ],
-    // },
-    // {
-    //   id: "2",
-    //   title: "Mobile App Developer",
-    //   department: "Engineering",
-    //   location: "Remote",
-    //   employmentType: "Full-time",
-    //   description:
-    //     "Build innovative mobile applications that transform how institutions operate across Africa.",
-    //   requirements: [
-    //     "3+ years of mobile development experience",
-    //     "Expertise in React Native or Flutter",
-    //     "Experience with mobile app deployment",
-    //     "Understanding of mobile UI/UX principles",
-    //   ],
-    //   benefits: [
-    //     "Remote-first culture",
-    //     "Learning and development budget",
-    //     "Health and wellness benefits",
-    //     "Stock options",
-    //   ],
-    // },
-    // {
-    //   id: "3",
-    //   title: "DevOps Engineer",
-    //   department: "Infrastructure",
-    //   location: "Accra, Ghana",
-    //   employmentType: "Full-time",
-    //   description: "Scale our infrastructure to support growing demand across African markets.",
-    //   requirements: [
-    //     "4+ years of DevOps experience",
-    //     "Expertise in AWS, Docker, and Kubernetes",
-    //     "Experience with CI/CD pipelines",
-    //     "Strong automation and scripting skills",
-    //   ],
-    //   benefits: [
-    //     "Cutting-edge technology stack",
-    //     "Conference and training opportunities",
-    //     "Comprehensive benefits package",
-    //     "Career growth opportunities",
-    //   ],
-    // },
-  ];
+  // Application form data
+  applicationForm = {
+    name: "",
+    email: "",
+    phone: "",
+    linkedIn: "",
+    coverLetter: "",
+    resume: null as File | null,
+  };
+
+  isSubmitting = false;
+  submitMessage = "";
+
+  constructor(private readonly http: HttpClient) {}
 
   ngOnInit() {
     this.loadJobs();
   }
 
   loadJobs() {
-    // In a real implementation,
-    // Example: this.http.get<AshbyJob[]>('https://api.ashbyhq.com/jobs').subscribe(...)
-
-    // For now, using mock data
-
-    this.jobs = this.mockJobs;
-    this.loading = false;
+    this.http.get<Job[]>("https://teksedinc.com/api/get-jobs.php").subscribe({
+      next: (jobs) => {
+        this.jobs = jobs;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error("Error loading jobs:", error);
+        this.error = true;
+        this.loading = false;
+      },
+    });
   }
 
   applyForJob(jobId: string) {
-    // Redirect to Ashby application form
-    window.open(`https://jobs.ashbyhq.com/teksed/${jobId}`, "_blank");
+    this.selectedJob = this.jobs.find((job) => job.id === jobId) || null;
+    this.showApplicationModal = true;
+    this.submitMessage = "";
+    // Reset form
+    this.applicationForm = {
+      name: "",
+      email: "",
+      phone: "",
+      linkedIn: "",
+      coverLetter: "",
+      resume: null,
+    };
+  }
+
+  closeModal() {
+    this.showApplicationModal = false;
+    this.selectedJob = null;
+    this.submitMessage = "";
+  }
+
+  onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        this.submitMessage = "Please upload only PDF or DOC/DOCX files";
+        return;
+      }
+
+      // Validate file size (5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        this.submitMessage = "File size must be less than 5MB";
+        return;
+      }
+
+      this.applicationForm.resume = file;
+      this.submitMessage = "";
+    }
+  }
+
+  submitApplication(event: Event) {
+    event.preventDefault();
+
+    if (!this.applicationForm.resume) {
+      this.submitMessage = "Please upload your resume";
+      return;
+    }
+
+    this.isSubmitting = true;
+    this.submitMessage = "";
+
+    // Create FormData for file upload
+    const formData = new FormData();
+    formData.append("name", this.applicationForm.name);
+    formData.append("email", this.applicationForm.email);
+    formData.append("phone", this.applicationForm.phone);
+    formData.append("linkedIn", this.applicationForm.linkedIn);
+    formData.append("coverLetter", this.applicationForm.coverLetter);
+    formData.append("jobTitle", this.selectedJob?.title || "");
+    formData.append("jobId", this.selectedJob?.id || "");
+    formData.append("resume", this.applicationForm.resume);
+
+    this.http.post("https://teksedinc.com/api/apply-job.php", formData).subscribe({
+      next: (response: any) => {
+        if (response.success) {
+          this.submitMessage = "Application submitted successfully! We'll be in touch soon.";
+          setTimeout(() => {
+            this.closeModal();
+          }, 3000);
+        } else {
+          this.submitMessage =
+            response.message || "Failed to submit application. Please try again.";
+        }
+        this.isSubmitting = false;
+      },
+      error: (error) => {
+        console.error("Error:", error);
+        this.submitMessage = "An error occurred. Please try again.";
+        this.isSubmitting = false;
+      },
+    });
+  }
+
+  sendResume() {
+    window.location.href = "mailto:info@teksedinc.com?subject=General Application - TeKSED Careers";
   }
 }

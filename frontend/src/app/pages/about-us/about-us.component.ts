@@ -4,10 +4,12 @@ import { trigger, transition, style, animate, query, stagger } from "@angular/an
 import { CommonModule } from "@angular/common";
 import { NavigationEnd, Router } from "@angular/router";
 import { filter } from "rxjs";
+import { HttpClient } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: "teksed-about-us",
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: "./about-us.component.html",
   animations: [
     trigger("fadeInUp", [
@@ -57,7 +59,10 @@ export class AboutUsComponent {
   protected selectedExecutive = signal<Executive | null>(null);
   private autoPlayInterval?: number;
 
-  constructor(private readonly router: Router) {
+  constructor(
+    private readonly router: Router,
+    private readonly http: HttpClient,
+  ) {
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       window.scrollTo(0, 0);
     });
@@ -170,6 +175,39 @@ export class AboutUsComponent {
 
   onResize() {
     this.adjustItemsPerSlide();
+  }
+
+  formData = {
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+  };
+
+  isSubmitting = false;
+  submitMessage = "";
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    this.isSubmitting = true;
+    this.submitMessage = "";
+
+    this.http.post("https://teksedinc.com/api/send-email.php", this.formData).subscribe({
+      next: (response: any) => {
+        if (response.success) {
+          this.submitMessage = "Message sent successfully!";
+          this.formData = { name: "", email: "", phone: "", message: "" };
+        } else {
+          this.submitMessage = "Failed to send message. Please try again.";
+        }
+        this.isSubmitting = false;
+      },
+      error: (error) => {
+        console.error("Error:", error);
+        this.submitMessage = "An error occurred. Please try again.";
+        this.isSubmitting = false;
+      },
+    });
   }
 
   protected executives: Executive[] = [

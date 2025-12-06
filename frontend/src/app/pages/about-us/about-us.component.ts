@@ -101,13 +101,21 @@ export class AboutUsComponent {
   startAutoPlay() {
     this.autoPlayInterval = window.setInterval(() => {
       this.next();
-    }, 4000);
+    }, 7000);
   }
 
   stopAutoPlay() {
     if (this.autoPlayInterval) {
       clearInterval(this.autoPlayInterval);
     }
+  }
+
+  pauseForInteraction() {
+    this.stopAutoPlay();
+  }
+
+  resumeAutoPlay() {
+    this.startAutoPlay();
   }
 
   next() {

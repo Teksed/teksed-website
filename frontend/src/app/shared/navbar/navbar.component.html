@@ -97,9 +97,7 @@
         <div class="md:hidden">
           <button
             (click)="toggleMobileMenu()"
-            class="focus:outline-none"
-            [class.text-primary]="hasScrolled()"
-            [class.text-white]="!hasScrolled()"
+            class="focus:outline-none text-primary"
           >
             <svg
               class="h-8 w-8 transition-transform duration-200"
@@ -181,13 +179,13 @@
           </div>
 
           <!-- Mobile CTA Button -->
-          <button
+          <!-- <button
             *ngIf="navbarData()?.ctaButton"
             (click)="onCtaClick(); toggleMobileMenu()"
             class="w-full mt-4 P500 font-semibold px-6 py-2 rounded-full transition-all bg-secondary text-white"
           >
             {{ navbarData()?.ctaButton?.label }}
-          </button>
+          </button> -->
         </div>
       </div>
     </div>
